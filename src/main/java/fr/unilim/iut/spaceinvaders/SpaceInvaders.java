@@ -60,10 +60,11 @@ public class SpaceInvaders {
 		return vaisseau!=null;
 	}
 	
-   	public void deplacerVaisseauVersLaDroite() {
-        if (vaisseau.abcisseLaPlusAGauche()< (longueur-1)) vaisseau.seDeplacerVersLaDroite();
+	public void deplacerVaisseauVersLaDroite() {
+		if (vaisseau.abcisseLaPlusADroite() < (longueur - 1))
+			vaisseau.seDeplacerVersLaDroite();
 	}
-   	
+
 	public void deplacerVaisseauVersLaGauche() {
 		if (vaisseau.abcisseLaPlusAGauche() > (0))
 			vaisseau.seDeplacerVersLaGauche();

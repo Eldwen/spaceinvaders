@@ -42,7 +42,7 @@ public class Vaisseau {
 		return (abcisseLaPlusAGauche()<=x) && (x<=abcisseLaPlusADroite());
 	}
 
-	private int abcisseLaPlusADroite() {
+	public int abcisseLaPlusADroite() {
 		return this.x+this.longueur-1;
 	}
 
