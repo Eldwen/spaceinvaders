@@ -12,6 +12,11 @@ public class Vaisseau {
     	this.dimension=new Dimension(longueur,hauteur);
     	this.origine=new Position (x,y);
 	}
+    
+    public Vaisseau(Dimension dimension, Position positionOrigine) {
+	    this.dimension = dimension;
+	    this.origine = positionOrigine;
+    }
 
     public void positionner(int x, int y) {
 		  this.origine.changerAbscisse(x);
