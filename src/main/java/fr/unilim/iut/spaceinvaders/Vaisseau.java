@@ -2,16 +2,14 @@ package fr.unilim.iut.spaceinvaders;
 
 public class Vaisseau {
 	Position origine;
-	int longueur;
-	int hauteur;
+	Dimension dimension;
 	
 	public Vaisseau(int longueur, int hauteur) {
 		this(longueur,hauteur,0,0);
 	}
 	
     public Vaisseau(int longueur, int hauteur, int x, int y) {
-    	this.longueur=longueur;
-    	this.hauteur=hauteur;
+    	this.dimension=new Dimension(longueur,hauteur);
     	this.origine=new Position (x,y);
 	}
 
@@ -33,7 +31,7 @@ public class Vaisseau {
 	}
 
 	private int ordonneeLaPlusBasse() {
-		return ordonneeLaPlusHaute()-this.hauteur+1;
+		return ordonneeLaPlusHaute()-this.dimension.hauteur()+1;
 	}
 
 	private boolean estAbcisseCouverte(int x) {
@@ -41,7 +39,7 @@ public class Vaisseau {
 	}
 
 	public int abcisseLaPlusADroite() {
-		return this.origine.abscisse()+this.longueur-1;
+		return this.origine.abscisse()+this.dimension.longueur()-1;
 	}
 
 	   public void seDeplacerVersLaDroite() {
