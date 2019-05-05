@@ -128,10 +128,9 @@ public class SpaceInvadersTest {
     @Test
 	public void test_VaisseauAvance_DeplacerVaisseauVersLaGauche() {
 		
-		spaceinvaders.positionnerUnNouveauVaisseau(1,1,7,9);
-
+		spaceinvaders.positionnerUnNouveauVaisseau(3,2,7,9);
 		spaceinvaders.deplacerVaisseauVersLaGauche();
-		
+	
 		assertEquals("" + 
 		"...............\n" + 
 		"...............\n" +
@@ -141,15 +140,14 @@ public class SpaceInvadersTest {
 		"...............\n" + 
 		"...............\n" + 
 		"...............\n" + 
-		"...............\n" + 
-		"......V........\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
-	}
+		"......VVV......\n" + 
+		"......VVV......\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
+    }
 	
 	@Test
 	public void test_VaisseauImmobile_DeplacerVaisseauVersLaGauche() {
 		
-		spaceinvaders.positionnerUnNouveauVaisseau(1,1,0,9);
-
+		spaceinvaders.positionnerUnNouveauVaisseau(3,2,0,9);
 		spaceinvaders.deplacerVaisseauVersLaGauche();
 		
 		assertEquals("" + 
@@ -161,8 +159,8 @@ public class SpaceInvadersTest {
 		"...............\n" + 
 		"...............\n" + 
 		"...............\n" + 
-		"...............\n" + 
-		"V..............\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
+		"VVV............\n" + 
+		"VVV............\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
 	}
 	
     @Test
