@@ -117,6 +117,10 @@ public class SpaceInvaders implements Jeu {
 		if (commandeUser.droite) {
 			deplacerVaisseauVersLaDroite();
 		}
+		
+		if (commandeUser.tir) {
+			tirerUnMissile(new Dimension(Constante.MISSILE_LONGUEUR,Constante.MISSILE_HAUTEUR), Constante.MISSILE_VITESSE);
+		}
 
 	}
 
