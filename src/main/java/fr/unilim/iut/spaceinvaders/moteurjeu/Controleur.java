@@ -95,7 +95,7 @@ public class Controleur implements KeyListener {
 			this.commandeEnCours.bas = false;
 			break;
 		case ' ':
-			this.commandeEnCours.tir=true;
+			this.commandeEnCours.tir=false;
 			break;
 		}
 
