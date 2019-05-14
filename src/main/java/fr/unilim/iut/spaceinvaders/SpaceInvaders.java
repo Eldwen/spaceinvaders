@@ -49,7 +49,7 @@ public class SpaceInvaders implements Jeu {
 		return this.aUnMissile() && missile.occupeLaPosition(x, y);
 	}
 
-	private boolean aUnMissile() {
+	public boolean aUnMissile() {
 		return missile != null;
 	}
 
@@ -105,6 +105,10 @@ public class SpaceInvaders implements Jeu {
 
 	public Vaisseau recupererVaisseau() {
 		return this.vaisseau;
+	}
+	
+	public Missile recupererMissile() {
+		return this.missile;
 	}
 
 	@Override
