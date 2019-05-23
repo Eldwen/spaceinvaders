@@ -16,6 +16,10 @@ public abstract class Sprite {
 	public Sprite() {
 		super();
 	}
+	
+	public Position getOrigine() {
+		return origine;
+	}
 
 	public boolean occupeLaPosition(int x, int y) {
 		return estAbscisseCouverte(x) && estOrdonneeCouverte(y);

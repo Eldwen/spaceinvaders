@@ -449,5 +449,39 @@ public class SpaceInvadersTest {
        "...............\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
      }
     
+    @Test
+    public void test_EnvahisseurChangeDeDirection_SiBordGauche() {
+
+       spaceinvaders.positionnerUnNouveauEnvahisseur(new Dimension(3,2),new Position(12,4), 3);
+       spaceinvaders.deplacerEnvahisseur();
+       assertEquals("" + 
+       "...............\n" + 
+       "...............\n" +
+       "...............\n" + 
+       ".........EEE...\n" + 
+       ".........EEE...\n" + 
+       "...............\n" + 
+       "...............\n" + 
+       "...............\n" + 
+       "...............\n" + 
+       "...............\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
+     }
     
+    @Test
+    public void test_EnvahisseurChangeDeDirection_SiBordDroit() {
+
+       spaceinvaders.positionnerUnNouveauEnvahisseur(new Dimension(3,2),new Position(0,4), 3);
+       spaceinvaders.deplacerEnvahisseur();
+       assertEquals("" + 
+       "...............\n" + 
+       "...............\n" +
+       "...............\n" + 
+       "...EEE.........\n" + 
+       "...EEE.........\n" + 
+       "...............\n" + 
+       "...............\n" + 
+       "...............\n" + 
+       "...............\n" + 
+       "...............\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
+     }
 }
