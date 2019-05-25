@@ -4,7 +4,7 @@ public class Collision {
 	
 	public static boolean verifHautMissileSuperieurBasEnvahisseur(Sprite entity1,Sprite entity2) {
 		boolean result = false;
-		if (entity1.ordonneeLaPlusHaute()>=entity2.ordonneeLaPlusBasse()) {
+		if (entity1.ordonneeLaPlusBasse()<=entity2.ordonneeLaPlusHaute() && entity1.ordonneeLaPlusHaute() >=entity2.ordonneeLaPlusHaute()) {
 			result=true;
 		}
 		return result;
@@ -12,7 +12,7 @@ public class Collision {
 	
 	public static boolean verifBasMissileInférieurHautEnvahisseur(Sprite entity1,Sprite entity2) {
 		boolean result = false;
-		if (entity1.ordonneeLaPlusBasse()<=entity2.ordonneeLaPlusHaute()) {
+		if (entity1.ordonneeLaPlusHaute()>=entity2.ordonneeLaPlusBasse() && entity1.ordonneeLaPlusBasse()<=entity2.ordonneeLaPlusBasse()) {
 			result=true;
 		}
 		return result;
@@ -20,7 +20,7 @@ public class Collision {
 	
 	public static boolean verifDroiteMissileApresGaucheEnvahisseur(Sprite entity1,Sprite entity2) {
 		boolean result = false;
-		if (entity1.abscisseLaPlusADroite()>=entity2.abscisseLaPlusAGauche()) {
+		if (entity1.abscisseLaPlusADroite()>=entity2.abscisseLaPlusAGauche() && entity1.abscisseLaPlusAGauche()<=entity2.abscisseLaPlusAGauche()) {
 			result=true;
 		}
 		return result;
@@ -28,7 +28,7 @@ public class Collision {
 	
 	public static boolean verifGaucheMissileAvantDroiteEnvahisseur(Sprite entity1,Sprite entity2) {
 		boolean result = false;
-		if (entity1.abscisseLaPlusAGauche()<=entity2.abscisseLaPlusADroite()) {
+		if (entity1.abscisseLaPlusAGauche()<=entity2.abscisseLaPlusADroite() && entity1.abscisseLaPlusADroite()>=entity2.abscisseLaPlusADroite()) {
 			result=true;
 		}
 		return result;
@@ -41,7 +41,4 @@ public class Collision {
 		}
 		return collision;
 	}
-	
-	
-	
 }

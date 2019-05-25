@@ -154,21 +154,19 @@ public class SpaceInvaders implements Jeu {
 		if (this.aUnEnvahisseur()) {
 			this.deplacerEnvahisseur();
 		}
-	}
-	
-	public boolean collisionTest() {
-		boolean collisionPresente = false;
-		if(this.aUnEnvahisseur() && this.aUnMissile()) {
-			if(collision.detecterCollision(missile, envahisseur)) {
-				collisionPresente=true;
-			}
-		}
-		return collisionPresente;
+		
+
 	}
 
 	@Override
 	public boolean etreFini() {
-		return false;
+		boolean fin = false;
+		if(this.aUnEnvahisseur() && this.aUnMissile()) {
+			if(Collision.detecterCollision(this.missile, this.envahisseur)) {
+				fin=true;
+			}
+		}
+		return fin;
 	}
 
 	public void tirerUnMissile(Dimension dimensionMissile, int vitesseMissile) {
