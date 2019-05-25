@@ -75,7 +75,7 @@ public class SpaceInvadersTest {
     public void test_VaisseauAvance_DeplacerVaisseauVersLaDroite() {
 
         spaceinvaders.positionnerUnNouveauSprite(new Dimension(3,2),new Position(7,9),3,'V');
-        spaceinvaders.deplacerVaisseauVersLaDroite();
+        spaceinvaders.deplacerSpriteVersLaDroite(spaceinvaders.getVaisseau());
         assertEquals("" + 
         "...............\n" + 
         "...............\n" +
@@ -95,7 +95,7 @@ public class SpaceInvadersTest {
 	public void test_VaisseauImmobile_DeplacerVaisseauVersLaDroite() {
 		
     	spaceinvaders.positionnerUnNouveauSprite(new Dimension(3,2),new Position(12,9), 3,'V');
-		spaceinvaders.deplacerVaisseauVersLaDroite();
+		spaceinvaders.deplacerSpriteVersLaDroite(spaceinvaders.getVaisseau());
 		assertEquals("" + 
 		"...............\n" + 
 		"...............\n" +
@@ -113,7 +113,7 @@ public class SpaceInvadersTest {
     public void test_VaisseauAvance_DeplacerVaisseauVersLaGauche() {
 
        spaceinvaders.positionnerUnNouveauSprite(new Dimension(3,2),new Position(7,9), 3,'V');
-       spaceinvaders.deplacerVaisseauVersLaGauche();
+       spaceinvaders.deplacerSpriteVersLaGauche(spaceinvaders.getVaisseau());
 
        assertEquals("" + 
        "...............\n" + 
@@ -132,7 +132,7 @@ public class SpaceInvadersTest {
     public void test_VaisseauImmobile_DeplacerVaisseauVersLaGauche() {
 
 	   spaceinvaders.positionnerUnNouveauSprite(new Dimension(3,2),new Position(0,9), 3,'V');
-       spaceinvaders.deplacerVaisseauVersLaGauche();
+       spaceinvaders.deplacerSpriteVersLaGauche(spaceinvaders.getVaisseau());
 
        assertEquals("" + 
        "...............\n" + 
@@ -151,7 +151,7 @@ public class SpaceInvadersTest {
     public void test_VaisseauAvancePartiellement_DeplacerVaisseauVersLaDroite() {
 
        spaceinvaders.positionnerUnNouveauSprite(new Dimension(3,2),new Position(10,9),3,'V');
-       spaceinvaders.deplacerVaisseauVersLaDroite();
+       spaceinvaders.deplacerSpriteVersLaDroite(spaceinvaders.getVaisseau());
        assertEquals("" + 
        "...............\n" + 
        "...............\n" +
@@ -169,7 +169,7 @@ public class SpaceInvadersTest {
     public void test_VaisseauAvancePartiellement_DeplacerVaisseauVersLaGauche() {
 
        spaceinvaders.positionnerUnNouveauSprite(new Dimension(3,2),new Position(1,9), 3,'V');
-       spaceinvaders.deplacerVaisseauVersLaGauche();
+       spaceinvaders.deplacerSpriteVersLaGauche(spaceinvaders.getVaisseau());
 
        assertEquals("" + 
        "...............\n" + 
@@ -342,7 +342,7 @@ public class SpaceInvadersTest {
     public void test_EnvahisseurImmobile_DeplacerVaisseauVersLaDroite() {
 
         spaceinvaders.positionnerUnNouveauSprite(new Dimension(3,2),new Position(0,4),3,'E');
-        spaceinvaders.deplacerEnvahisseurVersLaDroite();
+        spaceinvaders.deplacerSpriteVersLaDroite(spaceinvaders.getEnvahisseur());
         assertEquals("" + 
         "...............\n" + 
         "...............\n" +
@@ -362,7 +362,7 @@ public class SpaceInvadersTest {
 	public void test_EnvahisseurAvance_DeplacerVaisseauVersLaDroite() {
 		
     	spaceinvaders.positionnerUnNouveauSprite(new Dimension(3,2),new Position(6,4), 3,'E');
-		spaceinvaders.deplacerEnvahisseurVersLaDroite();
+		spaceinvaders.deplacerSpriteVersLaDroite(spaceinvaders.getEnvahisseur());
 		assertEquals("" + 
 		"...............\n" + 
 		"...............\n" +
@@ -380,7 +380,7 @@ public class SpaceInvadersTest {
     public void test_EnvahisseurImmobile_DeplacerVaisseauVersLaGauche() {
 
        spaceinvaders.positionnerUnNouveauSprite(new Dimension(3,2),new Position(12,4), 3,'E');
-       spaceinvaders.deplacerEnvahisseurVersLaGauche();
+       spaceinvaders.deplacerSpriteVersLaGauche(spaceinvaders.getEnvahisseur());
 
        assertEquals("" + 
        "...............\n" + 
@@ -399,7 +399,7 @@ public class SpaceInvadersTest {
     public void test_EnvahisseurAvance_DeplacerVaisseauVersLaGauche() {
 
 	   spaceinvaders.positionnerUnNouveauSprite(new Dimension(3,2),new Position(5,4), 3,'E');
-       spaceinvaders.deplacerEnvahisseurVersLaGauche();
+       spaceinvaders.deplacerSpriteVersLaGauche(spaceinvaders.getEnvahisseur());
 
        assertEquals("" + 
        "...............\n" + 
@@ -418,7 +418,7 @@ public class SpaceInvadersTest {
     public void test_EnvahisseurAvancePartiellement_DeplacerVaisseauVersLaDroite() {
 
        spaceinvaders.positionnerUnNouveauSprite(new Dimension(3,2),new Position(11,4),3,'E');
-       spaceinvaders.deplacerEnvahisseurVersLaDroite();
+       spaceinvaders.deplacerSpriteVersLaDroite(spaceinvaders.getEnvahisseur());
        assertEquals("" + 
        "...............\n" + 
        "...............\n" +
@@ -436,7 +436,7 @@ public class SpaceInvadersTest {
     public void test_EnvahisseurAvancePartiellement_DeplacerVaisseauVersLaGauche() {
 
        spaceinvaders.positionnerUnNouveauSprite(new Dimension(3,2),new Position(2,4), 3,'E');
-       spaceinvaders.deplacerEnvahisseurVersLaGauche();
+       spaceinvaders.deplacerSpriteVersLaGauche(spaceinvaders.getEnvahisseur());
        assertEquals("" + 
        "...............\n" + 
        "...............\n" +
@@ -493,7 +493,7 @@ public class SpaceInvadersTest {
       spaceinvaders.tirerUnMissile(new Dimension(3,2), 2);
       spaceinvaders.deplacerMissile();
   
-      assertEquals(true, Collision.collisionParLeBas(spaceinvaders.recupererMissile(), spaceinvaders.recupererEnvahisseur()));
+      assertEquals(true, Collision.collisionParLeBas(spaceinvaders.getMissile(), spaceinvaders.getEnvahisseur()));
       }
     
     @Test
@@ -503,7 +503,7 @@ public class SpaceInvadersTest {
       spaceinvaders.tirerUnMissile(new Dimension(3,2), 4);
       spaceinvaders.deplacerMissile();
   
-      assertEquals(true, Collision.collisionParLeHaut(spaceinvaders.recupererMissile(), spaceinvaders.recupererEnvahisseur()));
+      assertEquals(true, Collision.collisionParLeHaut(spaceinvaders.getMissile(), spaceinvaders.getEnvahisseur()));
       }
     
     @Test
@@ -513,7 +513,7 @@ public class SpaceInvadersTest {
       spaceinvaders.tirerUnMissile(new Dimension(3,2), 3);
       spaceinvaders.deplacerMissile();
       
-      assertEquals(true, Collision.collisionParlaGauche(spaceinvaders.recupererMissile(), spaceinvaders.recupererEnvahisseur()));
+      assertEquals(true, Collision.collisionParlaGauche(spaceinvaders.getMissile(), spaceinvaders.getEnvahisseur()));
       }
     
     @Test
@@ -523,7 +523,7 @@ public class SpaceInvadersTest {
       spaceinvaders.tirerUnMissile(new Dimension(3,2), 3);
       spaceinvaders.deplacerMissile();
   
-      assertEquals(true, Collision.collisionParLaDroite(spaceinvaders.recupererMissile(), spaceinvaders.recupererEnvahisseur()));
+      assertEquals(true, Collision.collisionParLaDroite(spaceinvaders.getMissile(), spaceinvaders.getEnvahisseur()));
       }
     
     @Test
@@ -533,6 +533,6 @@ public class SpaceInvadersTest {
        spaceinvaders.tirerUnMissile(new Dimension(3,2), 2);
        spaceinvaders.deplacerMissile();
 
-       assertEquals(true,Collision.detecterCollisionParUnCoteEtParLeHautOuLeBas(spaceinvaders.recupererMissile(), spaceinvaders.recupererEnvahisseur()));
+       assertEquals(true,Collision.detecterCollisionParUnCoteEtParLeHautOuLeBas(spaceinvaders.getMissile(), spaceinvaders.getEnvahisseur()));
      }
 }

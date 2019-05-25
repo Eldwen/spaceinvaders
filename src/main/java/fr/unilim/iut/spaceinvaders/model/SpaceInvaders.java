@@ -15,15 +15,30 @@ public class SpaceInvaders implements Jeu {
 	Envahisseur envahisseur;
 	Collision collision;
 
+	//Constructeur
 	public SpaceInvaders(int longueur, int hauteur) {
 		this.longueur = longueur;
 		this.hauteur = hauteur;
 	}
 
+	//Getters
+	private int coordonneExtremeDroite() {
+		return this.longueur - 1;
+	}
 	public int getLongueur() {
 		return longueur;
 	}
+	public Envahisseur getEnvahisseur() {
+		return this.envahisseur;
+	}
+	public Vaisseau getVaisseau() {
+		return this.vaisseau;
+	}
+	public Missile getMissile() {
+		return this.missile;
+	}
 
+	//Initialisation jeu
 	public void initialiserJeu() {
 		Position positionVaisseau = new Position(this.longueur / 2, this.hauteur - 1);
 		Dimension dimensionVaisseau = new Dimension(Constante.SPRITE_LONGUEUR, Constante.SPRITE_HAUTEUR);
@@ -34,6 +49,7 @@ public class SpaceInvaders implements Jeu {
 		positionnerUnNouveauSprite(dimensionEnvahisseur, positionEnvahisseur, Constante.SPRITE_VITESSE,'E');
 	}
 
+	//Méthodes pour mode Console
 	public String recupererEspaceJeuDansChaineASCII() {
 		StringBuilder espaceDeJeu = new StringBuilder();
 		for (int y = 0; y < hauteur; y++) {
@@ -44,7 +60,6 @@ public class SpaceInvaders implements Jeu {
 		}
 		return espaceDeJeu.toString();
 	}
-
 	private char recupererMarqueDeLaPosition(int x, int y) {
 		char marque;
 		if (this.aUnVaisseauQuiOccupeLaPosition(x, y)) marque = Constante.MARQUE_VAISSEAU;
@@ -52,6 +67,41 @@ public class SpaceInvaders implements Jeu {
 		else if (this.aUnEnvahisseurQuiOccupeLaPosition(x, y)) marque = Constante.MARQUE_ENVAHISSEUR;
 		else marque = Constante.MARQUE_VIDE;
 		return marque;
+	}
+	
+	//Méthodes relatives au mode graphique
+	@Override
+	public void evoluer(Commande commandeUser) {
+
+		if (commandeUser.gauche) {
+			deplacerSpriteVersLaGauche(vaisseau);
+		}
+
+		if (commandeUser.droite) {
+			deplacerSpriteVersLaDroite(vaisseau);
+		}
+
+		if (commandeUser.tir && !this.aUnMissile())
+			tirerUnMissile(new Dimension(Constante.MISSILE_LONGUEUR, Constante.MISSILE_HAUTEUR),
+					Constante.MISSILE_VITESSE);
+
+		if (this.aUnMissile()) {
+			this.deplacerMissile();
+		}
+
+		if (this.aUnEnvahisseur()) {
+			this.deplacerEnvahisseur();
+		}
+	}
+	@Override
+	public boolean etreFini() {
+		boolean fin = false;
+		if (this.aUnEnvahisseur() && this.aUnMissile()) {
+			if (Collision.detecterCollisionParUnCoteEtParLeHautOuLeBas(this.missile, this.envahisseur)) {
+				fin = true;
+			}
+		}
+		return fin;
 	}
 	
 	//Méthodes pour verifier la position d'un Sprite
@@ -75,11 +125,11 @@ public class SpaceInvaders implements Jeu {
 	public boolean aUnVaisseau() {
 		return vaisseau != null;
 	}
-
 	private boolean estDansEspaceJeu(int x, int y) {
 		return ((x >= 0) && (x < longueur)) && ((y >= 0) && (y < hauteur));
 	}
 	
+	//Autres méthodes
 	public void positionnerUnNouveauSprite(Dimension dimension, Position position, int vitesse, char typeSprite) {
 		int x = position.abscisse();
 		int y = position.ordonnee();
@@ -103,68 +153,8 @@ public class SpaceInvaders implements Jeu {
 		else System.err.println("Erreur : Muvais type de Sprite inséré");
 
 	}
-
-	public void deplacerVaisseauVersLaDroite() {
-		if (vaisseau.abscisseLaPlusADroite() < (longueur - 1)) {
-			vaisseau.deplacerHorizontalementVers(Direction.DROITE);
-			if (!estDansEspaceJeu(vaisseau.abscisseLaPlusADroite(), vaisseau.ordonneeLaPlusHaute())) {
-				vaisseau.positionner(longueur - vaisseau.longueur(), vaisseau.ordonneeLaPlusHaute());
-			}
-		}
-	}
-
-	public void deplacerVaisseauVersLaGauche() {
-		if (0 < vaisseau.abscisseLaPlusAGauche())
-			vaisseau.deplacerHorizontalementVers(Direction.GAUCHE);
-		if (!estDansEspaceJeu(vaisseau.abscisseLaPlusAGauche(), vaisseau.ordonneeLaPlusHaute())) {
-			vaisseau.positionner(0, vaisseau.ordonneeLaPlusHaute());
-		}
-	}
-
-	public Vaisseau recupererVaisseau() {
-		return this.vaisseau;
-	}
-
-	public Missile recupererMissile() {
-		return this.missile;
-	}
-
-	@Override
-	public void evoluer(Commande commandeUser) {
-
-		if (commandeUser.gauche) {
-			deplacerVaisseauVersLaGauche();
-		}
-
-		if (commandeUser.droite) {
-			deplacerVaisseauVersLaDroite();
-		}
-
-		if (commandeUser.tir && !this.aUnMissile())
-			tirerUnMissile(new Dimension(Constante.MISSILE_LONGUEUR, Constante.MISSILE_HAUTEUR),
-					Constante.MISSILE_VITESSE);
-
-		if (this.aUnMissile()) {
-			this.deplacerMissile();
-		}
-
-		if (this.aUnEnvahisseur()) {
-			this.deplacerEnvahisseur();
-		}
-
-	}
-
-	@Override
-	public boolean etreFini() {
-		boolean fin = false;
-		if (this.aUnEnvahisseur() && this.aUnMissile()) {
-			if (Collision.detecterCollisionParUnCoteEtParLeHautOuLeBas(this.missile, this.envahisseur)) {
-				fin = true;
-			}
-		}
-		return fin;
-	}
-
+	
+	//Méthode relative aux missiles
 	public void tirerUnMissile(Dimension dimensionMissile, int vitesseMissile) {
 
 		if ((vaisseau.hauteur() + dimensionMissile.hauteur()) > this.hauteur)
@@ -174,6 +164,37 @@ public class SpaceInvaders implements Jeu {
 		this.missile = this.vaisseau.tirerUnMissile(dimensionMissile, vitesseMissile);
 	}
 
+	//Methodes de déplacement des sprites
+	public void deplacerSpriteVersLaDroite(Sprite sprite) {
+		if (sprite.abscisseLaPlusADroite() < (longueur - 1)) {
+			sprite.deplacerHorizontalementVers(Direction.DROITE);
+			if (!estDansEspaceJeu(sprite.abscisseLaPlusADroite(), sprite.ordonneeLaPlusHaute())) sprite.positionner(longueur - sprite.longueur(), sprite.ordonneeLaPlusHaute());
+		}
+	}
+	public void deplacerSpriteVersLaGauche(Sprite sprite) {
+		if (0 < sprite.abscisseLaPlusAGauche()) sprite.deplacerHorizontalementVers(Direction.GAUCHE);
+		if (!estDansEspaceJeu(sprite.abscisseLaPlusAGauche(), sprite.ordonneeLaPlusHaute())) {
+			sprite.positionner(0, sprite.ordonneeLaPlusHaute());
+		}
+	}
+
+	//Methode relative au déplacement automatique de certains sprite
+	public void deplacerEnvahisseur() {
+		if (this.aUnEnvahisseur()) {
+			if (this.aUnEnvahisseurQuiOccupeLaPosition(Constante.coordoneeExtremeGauche, this.envahisseur.getOrigine().ordonnee())) {
+				Envahisseur.SeDirigeParDefautEtActuellementVersLaDroite = true;
+			} else if (this.aUnEnvahisseurQuiOccupeLaPosition(coordonneExtremeDroite(),
+					this.envahisseur.getOrigine().ordonnee())) {
+				Envahisseur.SeDirigeParDefautEtActuellementVersLaDroite = false;
+			}
+
+			if (Envahisseur.SeDirigeParDefautEtActuellementVersLaDroite) {
+				this.deplacerSpriteVersLaDroite(envahisseur);
+			} else {
+				this.deplacerSpriteVersLaGauche(envahisseur);
+			}
+		}
+	}
 	public void deplacerMissile() {
 		if (this.aUnMissile()) {
 			missile.deplacerVerticalementVers(Direction.HAUT_ECRAN);
@@ -181,58 +202,5 @@ public class SpaceInvaders implements Jeu {
 				this.missile = null;
 			}
 		}
-	}
-
-
-
-	public void deplacerEnvahisseurVersLaDroite() {
-		if (envahisseur.abscisseLaPlusADroite() < (longueur - 1)) {
-			envahisseur.deplacerHorizontalementVers(Direction.DROITE);
-			if (!estDansEspaceJeu(envahisseur.abscisseLaPlusADroite(), envahisseur.ordonneeLaPlusHaute())) {
-				envahisseur.positionner(longueur - envahisseur.longueur(), envahisseur.ordonneeLaPlusHaute());
-			}
-		}
-	}
-
-	public void deplacerEnvahisseurVersLaGauche() {
-		if (0 < envahisseur.abscisseLaPlusAGauche())
-			envahisseur.deplacerHorizontalementVers(Direction.GAUCHE);
-		if (!estDansEspaceJeu(envahisseur.abscisseLaPlusAGauche(), envahisseur.ordonneeLaPlusHaute())) {
-			envahisseur.positionner(0, envahisseur.ordonneeLaPlusHaute());
-		}
-	}
-
-	private int coordonneExtremeDroite() {
-		return this.longueur - 1;
-	}
-
-	private int coordonneeExtremeGauche() {
-		return Constante.coordoneeExtremeGauche;
-	}
-
-	public void deplacerEnvahisseur() {
-
-		if (this.aUnEnvahisseur()) {
-			if (this.aUnEnvahisseurQuiOccupeLaPosition(coordonneeExtremeGauche(), recupererOrdonneeEnvahisseur())) {
-				this.envahisseur.SeDirigeParDefautEtActuellementVersLaDroite = true;
-			} else if (this.aUnEnvahisseurQuiOccupeLaPosition(coordonneExtremeDroite(),
-					recupererOrdonneeEnvahisseur())) {
-				this.envahisseur.SeDirigeParDefautEtActuellementVersLaDroite = false;
-			}
-
-			if (this.envahisseur.SeDirigeParDefautEtActuellementVersLaDroite) {
-				this.deplacerEnvahisseurVersLaDroite();
-			} else {
-				this.deplacerEnvahisseurVersLaGauche();
-			}
-		}
-	}
-
-	private int recupererOrdonneeEnvahisseur() {
-		return this.envahisseur.getOrigine().ordonnee();
-	}
-
-	public Envahisseur recupererEnvahisseur() {
-		return this.envahisseur;
 	}
 }
