@@ -493,7 +493,7 @@ public class SpaceInvadersTest {
       spaceinvaders.tirerUnMissile(new Dimension(3,2), 2);
       spaceinvaders.deplacerMissile();
   
-      assertEquals(true, Collision.verifHautMissileSuperieurBasEnvahisseur(spaceinvaders.recupererMissile(), spaceinvaders.recupererEnvahisseur()));
+      assertEquals(true, Collision.collisionParLeBas(spaceinvaders.recupererMissile(), spaceinvaders.recupererEnvahisseur()));
       }
     
     @Test
@@ -503,7 +503,7 @@ public class SpaceInvadersTest {
       spaceinvaders.tirerUnMissile(new Dimension(3,2), 4);
       spaceinvaders.deplacerMissile();
   
-      assertEquals(true, Collision.verifBasMissileInférieurHautEnvahisseur(spaceinvaders.recupererMissile(), spaceinvaders.recupererEnvahisseur()));
+      assertEquals(true, Collision.collisionParLeHaut(spaceinvaders.recupererMissile(), spaceinvaders.recupererEnvahisseur()));
       }
     
     @Test
@@ -513,7 +513,7 @@ public class SpaceInvadersTest {
       spaceinvaders.tirerUnMissile(new Dimension(3,2), 3);
       spaceinvaders.deplacerMissile();
       
-      assertEquals(true, Collision.verifDroiteMissileApresGaucheEnvahisseur(spaceinvaders.recupererMissile(), spaceinvaders.recupererEnvahisseur()));
+      assertEquals(true, Collision.collisionParlaGauche(spaceinvaders.recupererMissile(), spaceinvaders.recupererEnvahisseur()));
       }
     
     @Test
@@ -523,7 +523,7 @@ public class SpaceInvadersTest {
       spaceinvaders.tirerUnMissile(new Dimension(3,2), 3);
       spaceinvaders.deplacerMissile();
   
-      assertEquals(true, Collision.verifGaucheMissileAvantDroiteEnvahisseur(spaceinvaders.recupererMissile(), spaceinvaders.recupererEnvahisseur()));
+      assertEquals(true, Collision.collisionParLaDroite(spaceinvaders.recupererMissile(), spaceinvaders.recupererEnvahisseur()));
       }
     
     @Test
@@ -533,6 +533,6 @@ public class SpaceInvadersTest {
        spaceinvaders.tirerUnMissile(new Dimension(3,2), 2);
        spaceinvaders.deplacerMissile();
 
-       assertEquals(true,Collision.detecterCollision(spaceinvaders.recupererMissile(), spaceinvaders.recupererEnvahisseur()));
+       assertEquals(true,Collision.detecterCollisionParUnCoteEtParLeHautOuLeBas(spaceinvaders.recupererMissile(), spaceinvaders.recupererEnvahisseur()));
      }
 }

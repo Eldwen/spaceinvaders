@@ -17,44 +17,29 @@ public class DessinSpaceInvaders implements DessinJeu {
 	public void dessiner(BufferedImage im) {
 		if (this.jeu.aUnVaisseau()) {
 			Vaisseau vaisseau = this.jeu.recupererVaisseau();
-			this.dessinerUnVaisseau(vaisseau, im);
+			this.dessinerUnSprite(vaisseau, im);
 		}
 		if (this.jeu.aUnMissile()) {
 			Missile missile = this.jeu.recupererMissile();
-			this.dessinerUnMissile(missile, im);
+			this.dessinerUnSprite(missile, im);
 		}
 		if (this.jeu.aUnEnvahisseur()) {
 			Envahisseur envahisseur = this.jeu.recupererEnvahisseur();
-			this.dessinerUnEnvahisseur(envahisseur, im);
+			this.dessinerUnSprite(envahisseur, im);
 		}
-		
 	}
 
-	private void dessinerUnVaisseau(Vaisseau vaisseau, BufferedImage im) {
+	private void dessinerUnSprite(Sprite sprite, BufferedImage im) {
 		Graphics2D crayon = (Graphics2D) im.getGraphics();
-
-		crayon.setColor(Color.gray);
-		crayon.fillRect(vaisseau.abscisseLaPlusAGauche(), vaisseau.ordonneeLaPlusBasse(), vaisseau.longueur(),
-				vaisseau.hauteur());
-
+		crayon.setColor(trouverCouleurSprite(sprite));
+		crayon.fillRect(sprite.abscisseLaPlusAGauche(), sprite.ordonneeLaPlusBasse(), sprite.longueur(),sprite.hauteur());
 	}
 	
-	private void dessinerUnEnvahisseur(Envahisseur envahisseur, BufferedImage im) {
-		Graphics2D crayon = (Graphics2D) im.getGraphics();
-
-		crayon.setColor(Color.red);
-		crayon.fillRect(envahisseur.abscisseLaPlusAGauche(), envahisseur.ordonneeLaPlusBasse(), envahisseur.longueur(),
-				envahisseur.hauteur());
-
+	private Color trouverCouleurSprite(Sprite sprite) {
+		if (sprite instanceof Vaisseau) return Constante.CouleurVaisseau;
+		else {
+			if (sprite instanceof Envahisseur) return Constante.CouleurEnvahisseur;
+			else return Constante.CouleurMssile;
+		}
 	}
-	
-	private void dessinerUnMissile(Missile missile, BufferedImage im) {
-		Graphics2D crayon = (Graphics2D) im.getGraphics();
-
-		crayon.setColor(Color.blue);
-		crayon.fillRect(missile.abscisseLaPlusAGauche(), missile.ordonneeLaPlusBasse(), missile.longueur(),
-				missile.hauteur());
-
-	}
-
 }

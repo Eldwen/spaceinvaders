@@ -29,7 +29,7 @@ public class SpaceInvaders implements Jeu {
 		Dimension dimensionVaisseau = new Dimension(Constante.SPRITE_LONGUEUR, Constante.SPRITE_HAUTEUR);
 		positionnerUnNouveauVaisseau(dimensionVaisseau, positionVaisseau, Constante.SPRITE_VITESSE);
 		
-		Position positionEnvahisseur = new Position(Constante.coordoneeExtremeGauche, Constante.ordonneeDefautEnvahisseur);
+		Position positionEnvahisseur = new Position(Constante.coordoneeExtremeGauche, Constante.ordonneeDefautPlacementEnvahisseur);
 		Dimension dimensionEnvahisseur = new Dimension(Constante.SPRITE_LONGUEUR, Constante.SPRITE_HAUTEUR);
 		positionnerUnNouveauEnvahisseur(dimensionEnvahisseur, positionEnvahisseur, Constante.SPRITE_VITESSE);
 	}
@@ -162,7 +162,7 @@ public class SpaceInvaders implements Jeu {
 	public boolean etreFini() {
 		boolean fin = false;
 		if(this.aUnEnvahisseur() && this.aUnMissile()) {
-			if(Collision.detecterCollision(this.missile, this.envahisseur)) {
+			if(Collision.detecterCollisionParUnCoteEtParLeHautOuLeBas(this.missile, this.envahisseur)) {
 				fin=true;
 			}
 		}
