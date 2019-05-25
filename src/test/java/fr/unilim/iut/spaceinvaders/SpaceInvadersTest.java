@@ -5,6 +5,7 @@ import static org.junit.Assert.fail;
 import org.junit.Test;
 import org.junit.Before;
 
+import fr.unilim.iut.spaceinvaders.model.Collision;
 import fr.unilim.iut.spaceinvaders.model.Dimension;
 import fr.unilim.iut.spaceinvaders.model.Position;
 import fr.unilim.iut.spaceinvaders.model.SpaceInvaders;
@@ -483,5 +484,55 @@ public class SpaceInvadersTest {
        "...............\n" + 
        "...............\n" + 
        "...............\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
+     }
+    
+    @Test
+    public void test_verifHautMissileSuperieurBasEnvahisseur() {
+      spaceinvaders.positionnerUnNouveauEnvahisseur(new Dimension(3,2),new Position(0,4), 3);
+      spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(3,2), new Position(0,9), 3);
+      spaceinvaders.tirerUnMissile(new Dimension(3,2), 2);
+      spaceinvaders.deplacerMissile();
+  
+      assertEquals(true, Collision.verifHautMissileSuperieurBasEnvahisseur(spaceinvaders.recupererMissile(), spaceinvaders.recupererEnvahisseur()));
+      }
+    
+    @Test
+    public void test_verifBasMissileInférieurHautEnvahisseur() {
+      spaceinvaders.positionnerUnNouveauEnvahisseur(new Dimension(3,2),new Position(0,4), 3);
+      spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(3,2), new Position(0,9), 3);
+      spaceinvaders.tirerUnMissile(new Dimension(3,2), 4);
+      spaceinvaders.deplacerMissile();
+  
+      assertEquals(true, Collision.verifBasMissileInférieurHautEnvahisseur(spaceinvaders.recupererMissile(), spaceinvaders.recupererEnvahisseur()));
+      }
+    
+    @Test
+    public void test_verifDroiteMissileApresGaucheEnvahisseur() {
+      spaceinvaders.positionnerUnNouveauEnvahisseur(new Dimension(3,2),new Position(2,4), 3);
+      spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(3,2), new Position(0,9), 3);
+      spaceinvaders.tirerUnMissile(new Dimension(3,2), 3);
+      spaceinvaders.deplacerMissile();
+      
+      assertEquals(true, Collision.verifDroiteMissileApresGaucheEnvahisseur(spaceinvaders.recupererMissile(), spaceinvaders.recupererEnvahisseur()));
+      }
+    
+    @Test
+    public void test_verifGaucheMissileAvantDroiteEnvahisseur() {
+      spaceinvaders.positionnerUnNouveauEnvahisseur(new Dimension(3,2),new Position(2,4), 3);
+      spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(3,2), new Position(4,9), 3);
+      spaceinvaders.tirerUnMissile(new Dimension(3,2), 3);
+      spaceinvaders.deplacerMissile();
+  
+      assertEquals(true, Collision.verifGaucheMissileAvantDroiteEnvahisseur(spaceinvaders.recupererMissile(), spaceinvaders.recupererEnvahisseur()));
+      }
+    
+    @Test
+    public void test_Missile_Elimine_Envahisseur() {
+       spaceinvaders.positionnerUnNouveauEnvahisseur(new Dimension(3,2),new Position(0,4), 3);
+       spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(3,2), new Position(0,9), 3);
+       spaceinvaders.tirerUnMissile(new Dimension(3,2), 2);
+       spaceinvaders.deplacerMissile();
+
+       assertEquals(true,Collision.detecterCollision(spaceinvaders.recupererMissile(), spaceinvaders.recupererEnvahisseur()));
      }
 }

@@ -13,6 +13,7 @@ public class SpaceInvaders implements Jeu {
 	Vaisseau vaisseau;
 	Missile missile;
 	Envahisseur envahisseur;
+	Collision collision;
 
 	public SpaceInvaders(int longueur, int hauteur) {
 		this.longueur = longueur;
@@ -154,6 +155,16 @@ public class SpaceInvaders implements Jeu {
 			this.deplacerEnvahisseur();
 		}
 	}
+	
+	public boolean collisionTest() {
+		boolean collisionPresente = false;
+		if(this.aUnEnvahisseur() && this.aUnMissile()) {
+			if(collision.detecterCollision(missile, envahisseur)) {
+				collisionPresente=true;
+			}
+		}
+		return collisionPresente;
+	}
 
 	@Override
 	public boolean etreFini() {
@@ -250,5 +261,4 @@ public class SpaceInvaders implements Jeu {
 	public Envahisseur recupererEnvahisseur() {
 		return this.envahisseur;
 	}
-
 }
