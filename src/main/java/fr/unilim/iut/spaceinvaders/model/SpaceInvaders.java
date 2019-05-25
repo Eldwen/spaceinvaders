@@ -237,13 +237,13 @@ public class SpaceInvaders implements Jeu {
 		
 		if (this.aUnEnvahisseur()) {
 			if(this.aUnEnvahisseurQuiOccupeLaPosition(coordonneeExtremeGauche(), recupererOrdonneeEnvahisseur())) {
-				this.envahisseur.DoitSeDirigerVersLaDroite=true;
+				this.envahisseur.SeDirigeParDefautEtActuellementVersLaDroite=true;
 			}
 			else if(this.aUnEnvahisseurQuiOccupeLaPosition(coordonneExtremeDroite(), recupererOrdonneeEnvahisseur())) {
-				this.envahisseur.DoitSeDirigerVersLaDroite=false;
+				this.envahisseur.SeDirigeParDefautEtActuellementVersLaDroite=false;
 			}
 			
-			if(this.envahisseur.DoitSeDirigerVersLaDroite) {
+			if(this.envahisseur.SeDirigeParDefautEtActuellementVersLaDroite) {
 				this.deplacerEnvahisseurVersLaDroite();
 			}
 			else {
