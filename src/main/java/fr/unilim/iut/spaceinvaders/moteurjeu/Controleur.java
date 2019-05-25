@@ -68,6 +68,7 @@ public class Controleur implements KeyListener {
 			this.commandeEnCours.bas = true;
 			this.commandeARetourner.bas = true;
 			break;
+			// si on appuie sur espace,commande joueur est tirer un missile
 		case ' ':
 			this.commandeEnCours.tir=true;
 			this.commandeARetourner.tir=true;
