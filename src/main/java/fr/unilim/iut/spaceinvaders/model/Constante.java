@@ -4,14 +4,19 @@ import java.awt.Color;
 
 public class Constante {
 	//Cosntantes d'espace de jeu
-    public static final int ESPACEJEU_LONGUEUR = 150;
-    public static final int ESPACEJEU_HAUTEUR = 100;
+    public static final int ESPACEJEU_LONGUEUR = 600;
+    public static final int ESPACEJEU_HAUTEUR = 400;
 	public static final int coordoneeExtremeGauche = 0;
 	
-    //Constantes de sprite
-    public static final int SPRITE_LONGUEUR = 30;
-    public static final int SPRITE_HAUTEUR = 20;
-    public static final int SPRITE_VITESSE = 5;
+    //Constantes de vaisseau 
+    public static final int VAISSEAU_LONGUEUR = 30;
+    public static final int VAISSEAU_HAUTEUR = 20;
+    public static final int VAISSEAU_VITESSE = 18;
+    
+    //Constantes d'envahisseur
+    public static final int ENVA_LONGUEUR = 30;
+    public static final int ENVA_HAUTEUR = 20;
+    public static final int ENVA_VITESSE = 18;
     
     //Constantes de marques
 	static final char MARQUE_FIN_LIGNE = '\n';
@@ -21,9 +26,9 @@ public class Constante {
 	static final char MARQUE_ENVAHISSEUR = 'E';
 	
 	//Constantes de missile
-	public static final int MISSILE_LONGUEUR = 10;
-	public static final int MISSILE_HAUTEUR = 20;
-	public static final int MISSILE_VITESSE = 5;
+	public static final int MISSILE_LONGUEUR = 8;
+	public static final int MISSILE_HAUTEUR = 25;
+	public static final int MISSILE_VITESSE = 22;
 	
 	//Constantes d'envahisseur
 	public static final int ordonneeDefautPlacementEnvahisseur = 20;

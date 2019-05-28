@@ -41,12 +41,12 @@ public class SpaceInvaders implements Jeu {
 	//Initialisation jeu
 	public void initialiserJeu() {
 		Position positionVaisseau = new Position(this.longueur / 2, this.hauteur - 1);
-		Dimension dimensionVaisseau = new Dimension(Constante.SPRITE_LONGUEUR, Constante.SPRITE_HAUTEUR);
-		positionnerUnNouveauSprite(dimensionVaisseau, positionVaisseau, Constante.SPRITE_VITESSE,'V');
+		Dimension dimensionVaisseau = new Dimension(Constante.VAISSEAU_LONGUEUR, Constante.VAISSEAU_HAUTEUR);
+		positionnerUnNouveauSprite(dimensionVaisseau, positionVaisseau, Constante.VAISSEAU_VITESSE,'V');
 
 		Position positionEnvahisseur = new Position(Constante.coordoneeExtremeGauche,Constante.ordonneeDefautPlacementEnvahisseur);
-		Dimension dimensionEnvahisseur = new Dimension(Constante.SPRITE_LONGUEUR, Constante.SPRITE_HAUTEUR);
-		positionnerUnNouveauSprite(dimensionEnvahisseur, positionEnvahisseur, Constante.SPRITE_VITESSE,'E');
+		Dimension dimensionEnvahisseur = new Dimension(Constante.ENVA_LONGUEUR, Constante.ENVA_HAUTEUR);
+		positionnerUnNouveauSprite(dimensionEnvahisseur, positionEnvahisseur, Constante.ENVA_VITESSE,'E');
 	}
 
 	//Méthodes pour mode Console
