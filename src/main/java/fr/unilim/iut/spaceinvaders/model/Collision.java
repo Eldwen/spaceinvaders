@@ -1,22 +1,52 @@
 package fr.unilim.iut.spaceinvaders.model;
 
 public class Collision {
-	//Tests de Sprite se rentrant dedans par un coté
-	public static boolean collisionParLeBas(Sprite entity1,Sprite entity2) {
-		return (entity1.ordonneeLaPlusBasse()<=entity2.ordonneeLaPlusHaute() && entity1.ordonneeLaPlusHaute() >=entity2.ordonneeLaPlusHaute())||(entity1.ordonneeLaPlusHaute()>=entity2.ordonneeLaPlusHaute() && entity1.ordonneeLaPlusBasse()<=entity2.ordonneeLaPlusBasse());
-	}
-	public static boolean collisionParLeHaut(Sprite entity1,Sprite entity2) {
-		return (entity1.ordonneeLaPlusHaute()>=entity2.ordonneeLaPlusBasse() && entity1.ordonneeLaPlusBasse()<=entity2.ordonneeLaPlusBasse())||(entity1.ordonneeLaPlusHaute()>=entity2.ordonneeLaPlusHaute() && entity1.ordonneeLaPlusBasse()<=entity2.ordonneeLaPlusBasse());
-	}
-	public static boolean collisionParlaGauche(Sprite entity1,Sprite entity2) {
-		return (entity1.abscisseLaPlusADroite()>=entity2.abscisseLaPlusAGauche() && entity1.abscisseLaPlusAGauche()<=entity2.abscisseLaPlusAGauche())||(entity1.abscisseLaPlusAGauche()>=entity2.abscisseLaPlusAGauche() && entity1.abscisseLaPlusADroite()<=entity2.abscisseLaPlusADroite());
-	}
-	public static boolean collisionParLaDroite(Sprite entity1,Sprite entity2) {
-		return (entity1.abscisseLaPlusAGauche()<=entity2.abscisseLaPlusADroite() && entity1.abscisseLaPlusADroite()>=entity2.abscisseLaPlusADroite())||(entity1.abscisseLaPlusAGauche()>=entity2.abscisseLaPlusAGauche() && entity1.abscisseLaPlusADroite()<=entity2.abscisseLaPlusADroite());
+	// Tests de Sprite se rentrant dedans par un coté
+	public static boolean collisionParLeBas(Sprite sprite1, Sprite sprite2) {
+		if (null != sprite1 && null != sprite2) {
+			return (sprite1.ordonneeLaPlusBasse() <= sprite2.ordonneeLaPlusHaute()
+					&& sprite1.ordonneeLaPlusHaute() >= sprite2.ordonneeLaPlusHaute())
+					|| (sprite1.ordonneeLaPlusHaute() >= sprite2.ordonneeLaPlusHaute()
+							&& sprite1.ordonneeLaPlusBasse() <= sprite2.ordonneeLaPlusBasse());
+		} 
+		else return false;
 	}
 
-	public static boolean detecterCollisionParUnCoteEtParLeHautOuLeBas(Sprite entity1,Sprite entity2) {
-		return (collisionParLeBas(entity1,entity2)||collisionParLeHaut(entity1,entity2))&&(collisionParlaGauche(entity1,entity2)||collisionParLaDroite(entity1,entity2));
+	public static boolean collisionParLeHaut(Sprite sprite1, Sprite sprite2) {
+		if (null != sprite1 && null != sprite2) {
+			return (sprite1.ordonneeLaPlusHaute() >= sprite2.ordonneeLaPlusBasse()
+					&& sprite1.ordonneeLaPlusBasse() <= sprite2.ordonneeLaPlusBasse())
+					|| (sprite1.ordonneeLaPlusHaute() >= sprite2.ordonneeLaPlusHaute()
+							&& sprite1.ordonneeLaPlusBasse() <= sprite2.ordonneeLaPlusBasse());
+		} 
+		else return false;
 	}
 
+	public static boolean collisionParlaGauche(Sprite sprite1, Sprite sprite2) {
+		if (null != sprite1 && null != sprite2) {
+			return (sprite1.abscisseLaPlusADroite() >= sprite2.abscisseLaPlusAGauche()
+					&& sprite1.abscisseLaPlusAGauche() <= sprite2.abscisseLaPlusAGauche())
+					|| (sprite1.abscisseLaPlusAGauche() >= sprite2.abscisseLaPlusAGauche()
+							&& sprite1.abscisseLaPlusADroite() <= sprite2.abscisseLaPlusADroite());
+		}
+		else return false;
+	}
+
+	public static boolean collisionParLaDroite(Sprite sprite1, Sprite sprite2) {
+		if (null != sprite1 && null != sprite2) {
+			return (sprite1.abscisseLaPlusAGauche() <= sprite2.abscisseLaPlusADroite()
+					&& sprite1.abscisseLaPlusADroite() >= sprite2.abscisseLaPlusADroite())
+					|| (sprite1.abscisseLaPlusAGauche() >= sprite2.abscisseLaPlusAGauche()
+							&& sprite1.abscisseLaPlusADroite() <= sprite2.abscisseLaPlusADroite());
+		} 
+		else return false;
+	}
+
+	public static boolean detecterCollisionParUnCoteEtParLeHautOuLeBas(Sprite sprite1, Sprite sprite2) {
+		if (null != sprite1 && null != sprite2) {
+			return (collisionParLeBas(sprite1, sprite2) || collisionParLeHaut(sprite1, sprite2))
+					&& (collisionParlaGauche(sprite1, sprite2) || collisionParLaDroite(sprite1, sprite2));
+		} 
+		else return false;
+	}
 }

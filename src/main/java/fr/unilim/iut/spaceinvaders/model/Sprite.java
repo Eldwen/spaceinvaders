@@ -66,7 +66,7 @@ public abstract class Sprite {
 		return this.dimension.longueur();
 	}
 	
-	public Position getOrigine() {
+	public Position origine() {
 		return origine;
 	}
 }

@@ -25,16 +25,16 @@ public class SpaceInvaders implements Jeu {
 	private int coordonneExtremeDroite() {
 		return this.longueur - 1;
 	}
-	public int getLongueur() {
+	public int recupererLongueur() {
 		return longueur;
 	}
-	public Envahisseur getEnvahisseur() {
+	public Envahisseur recupererEnvahisseur() {
 		return this.envahisseur;
 	}
-	public Vaisseau getVaisseau() {
+	public Vaisseau recupererVaisseau() {
 		return this.vaisseau;
 	}
-	public Missile getMissile() {
+	public Missile recupererMissile() {
 		return this.missile;
 	}
 
@@ -181,10 +181,10 @@ public class SpaceInvaders implements Jeu {
 	//Methode relative au déplacement automatique de certains sprite
 	public void deplacerEnvahisseur() {
 		if (this.aUnEnvahisseur()) {
-			if (this.aUnEnvahisseurQuiOccupeLaPosition(Constante.coordoneeExtremeGauche, this.envahisseur.getOrigine().ordonnee())) {
+			if (this.aUnEnvahisseurQuiOccupeLaPosition(Constante.coordoneeExtremeGauche, this.envahisseur.origine().ordonnee())) {
 				Envahisseur.SeDirigeParDefautEtActuellementVersLaDroite = true;
 			} else if (this.aUnEnvahisseurQuiOccupeLaPosition(coordonneExtremeDroite(),
-					this.envahisseur.getOrigine().ordonnee())) {
+					this.envahisseur.origine().ordonnee())) {
 				Envahisseur.SeDirigeParDefautEtActuellementVersLaDroite = false;
 			}
 

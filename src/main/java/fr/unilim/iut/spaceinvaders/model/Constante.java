@@ -4,8 +4,8 @@ import java.awt.Color;
 
 public class Constante {
 	//Cosntantes d'espace de jeu
-    public static final int ESPACEJEU_LONGUEUR = 600;
-    public static final int ESPACEJEU_HAUTEUR = 400;
+    public static final int ESPACEJEU_LONGUEUR = 300;
+    public static final int ESPACEJEU_HAUTEUR = 200;
 	public static final int coordoneeExtremeGauche = 0;
 	
     //Constantes de vaisseau 
