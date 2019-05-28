@@ -479,7 +479,7 @@ public class SpaceInvadersTest {
       }
     
     @Test
-    public void test_Missile_Elimine_Envahisseur() {
+    public void test_MissileDansEnvahisseur_DetecteUneCollision() {
        spaceinvaders.positionnerUnNouveauSprite(new Dimension(3,2),new Position(0,4), 3,'E');
        spaceinvaders.positionnerUnNouveauSprite(new Dimension(3,2), new Position(0,9), 3,'V');
        spaceinvaders.tirerUnMissile(new Dimension(3,2), 2);

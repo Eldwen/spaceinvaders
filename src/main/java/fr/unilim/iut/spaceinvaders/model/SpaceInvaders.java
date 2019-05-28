@@ -130,7 +130,7 @@ public class SpaceInvaders implements Jeu {
 	}
 	
 	//Autres méthodes
-	public void positionnerUnNouveauSprite(Dimension dimension, Position position, int vitesse, char typeSprite) {
+	public void positionnerUnNouveauSprite(Dimension dimension, Position position, int vitesse, char typeSprite) { //Type= E pour envahisseur et V pour vaisseau ; Sinon, rien
 		int x = position.abscisse();
 		int y = position.ordonnee();
 
